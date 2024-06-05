@@ -1,0 +1,417 @@
+version: 0.1.28
+jobId: "479"
+jobName: Sales Invoice
+jobType: Source Aligned Data Product
+developerId: 2b0e13a4-ea69-409c-8973-2565d00ef659
+domain: marketing_and_sales
+alias: save_sales_invoice_Iceberg
+discoveryPort:
+  name: Sales Invoice
+inputPorts:
+  - alias: SH_ORDBOOK_1
+    isDynamic: true
+    path: s3://msil-dataverse-marketing-and-sales/Dataset_Output/Sh_Order_Book/Incremental_load/##today_date##/parquet/
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        mergeSchema: true
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: msil-dataverse-marketing-and-sales
+      dataSetUrn: urn:dv:dataset:26c9722c-ade6-408d-acfc-8619a29175a5
+    type: inputParquet
+  - alias: SH_INVOICE_1
+    isDynamic: true
+    path: s3://msil-dataverse-marketing-and-sales/Dataset_Output/Sh_Invoice/Incremental_load/##today_date##/parquet/
+    optional:
+      persistDataFrame: false
+      advanceOptions:
+        mergeSchema: true
+      enableDataReconciliation: false
+      enforceSchema: false
+      connection: msil-dataverse-marketing-and-sales
+      dataSetUrn: urn:dv:dataset:f1561e4d-84d3-40c9-a8c8-76e7aaaf38a6
+    type: inputParquet
+productState:
+  isDynamic: true
+  alias: save_sales_invoice_Iceberg
+  retentionVersions: ""
+  logicalSchema:
+    properties:
+      INV_DATE:
+        type: DATETIME
+        description: Invoice Date
+        sourceColumn: INV_DATE
+        sourceTable: SH_INVOICE
+      CANCEL_DATE:
+        type: DATETIME
+        description: Cancel Date
+        sourceColumn: CANCEL_DATE
+        sourceTable: SH_INVOICE
+      Invoice_Cancellation_Date:
+        type: DATETIME
+        description: Invoice_Cancellation_Date
+        sourceColumn: CANCEL_DATE
+        sourceTable: SH_INVOICE
+      ORDER_DATE:
+        type: DATETIME
+        description: ORDER_DATE
+        sourceColumn: ORDER_DATE
+        sourceTable: SH_ORDBOOK
+      ORDER_NUM:
+        type: STRING
+        description: Order No for the item
+        sourceColumn: ORDER_NUM
+        sourceTable: SH_ORDBOOK
+      VIN:
+        type: STRING
+        description: Vehicle Identification Number
+        sourceColumn: VIN
+        sourceTable: SH_INVOICE
+      DEALER_MAP_CD:
+        type: STRING
+        description: Dealer Mapping Code
+        sourceColumn: DEALER_MAP_CD
+        sourceTable: SH_INVOICE
+      Company_FA:
+        type: STRING
+        description: Dealer Mapping Code
+        sourceColumn: COMP_FA
+        sourceTable: SH_INVOICE
+      Location_code:
+        type: STRING
+        description: Location Code
+        sourceColumn: LOC_CD
+        sourceTable: SH_INVOICE
+      PARENT_GROUP:
+        type: STRING
+        description: Parent Group
+        sourceColumn: PARENT_GROUP
+        sourceTable: SH_INVOICE
+      Invoice_Type:
+        type: STRING
+        description: Type of Invoice
+        sourceColumn: inv_type
+        sourceTable: SH_INVOICE
+      Invoice_Number:
+        type: STRING
+        description: Invoice Number
+        sourceColumn: inv_num
+        sourceTable: SH_INVOICE
+      TEHSIL_CODE:
+        type: STRING
+        description: Code Of Tehsil
+        sourceColumn: TEHSIL_CODE
+        sourceTable: SH_ORDBOOK
+      VILLAGE_CODE:
+        type: STRING
+        description: Code Of Village
+        sourceColumn: VILLAGE_CD
+        sourceTable: SH_ORDBOOK
+      STATE_CODE:
+        type: STRING
+        description: Code Of State
+        sourceColumn: STATE_CD
+        sourceTable: SH_ORDBOOK
+      CS_MGA_Sold_Amount:
+        type: STRING
+        description: MGA Sold Amount
+        sourceColumn: CS_MGA_SOLD_AMT
+        sourceTable: SH_ORDBOOK
+      TDS_Amount_OrdBook:
+        type: STRING
+        description: TDS Amount
+        sourceColumn: TDS_AMT
+        sourceTable: SH_ORDBOOK
+      Interest_Amount:
+        type: STRING
+        description: Interest Amount
+        sourceColumn: INTEREST_AMT
+        sourceTable: SH_ORDBOOK
+      Final_Amount:
+        type: STRING
+        description: Final Amount
+        sourceColumn: FIN_AMT
+        sourceTable: SH_ORDBOOK
+      EMI_Amount:
+        type: STRING
+        description: EMI Amount
+        sourceColumn: EMI_AMT
+        sourceTable: SH_ORDBOOK
+      Insurance_Amount:
+        type: STRING
+        description: Insurance Amount
+        sourceColumn: INSURANCE_AMT
+        sourceTable: SH_ORDBOOK
+      Net_Premium_Amount:
+        type: STRING
+        description: Net_Premium_Amount
+        sourceColumn: NET_PREM_AMT
+        sourceTable: SH_ORDBOOK
+      Autocard_Booked_Amount:
+        type: STRING
+        description: Autocard_Booked_Amount
+        sourceColumn: AUTOCARD_BOOKED_AMT
+        sourceTable: SH_ORDBOOK
+      Extended_Warranty_Booked_Amount:
+        type: STRING
+        description: Extended_Warranty_Booked_Amount
+        sourceColumn: EW_BOOKED_AMT
+        sourceTable: SH_ORDBOOK
+      MI_Booked_Amount:
+        type: STRING
+        description: MI_Booked_Amount
+        sourceColumn: MI_BOOKED_AMT
+        sourceTable: SH_ORDBOOK
+      Financed_Amount:
+        type: STRING
+        description: Financed_Amount
+        sourceColumn: FINANCED_AMT
+        sourceTable: SH_ORDBOOK
+      Write_Off_Amount_OrdBook:
+        type: STRING
+        description: Write_Off_Amount_OrdBook
+        sourceColumn: WRITEOFF_AMT
+        sourceTable: SH_ORDBOOK
+      Booking_Amount:
+        type: STRING
+        description: Booking_Amount
+        sourceColumn: BOOKING_AMT
+        sourceTable: SH_ORDBOOK
+      Received_Amount_orbook:
+        type: STRING
+        description: Received_Amount_orbook
+        sourceColumn: RECD_AMT
+        sourceTable: SH_ORDBOOK
+      Charge_Amount_ordbook:
+        type: STRING
+        description: Charge_Amount_ordbook
+        sourceColumn: CHARGE_AMT
+        sourceTable: SH_ORDBOOK
+      MGA_Final_Amount:
+        type: STRING
+        description: MGA_Final_Amount
+        sourceColumn: MGA_FIN_AMT
+        sourceTable: SH_ORDBOOK
+      Variant_Code:
+        type: STRING
+        description: VARIANT_Code
+        sourceColumn: VARIANT_CD
+        sourceTable: SH_INVOICE
+      Ecolor_Code:
+        type: STRING
+        description: Ecolor_Code
+        sourceColumn: VARIANT_CD
+        sourceTable: SH_INVOICE
+      Booking_Amount_Invoice:
+        type: STRING
+        description: Booking_Amount_Invoice
+        sourceColumn: BOOKING_AMT
+        sourceTable: SH_INVOICE
+      Loyalty_Redeem_Amount:
+        type: STRING
+        description: Loyalty_Redeem_Amount
+        sourceColumn: LOYL_REDEEM_AMT
+        sourceTable: SH_INVOICE
+      Charge_Amount:
+        type: STRING
+        description: Charge_Amount
+        sourceColumn: CHARGE_AMT
+        sourceTable: SH_INVOICE
+      FCB_Amount:
+        type: STRING
+        description: FCB_Amount
+        sourceColumn: FCB_AMT
+        sourceTable: SH_INVOICE
+      Financed_Amount_invoice:
+        type: STRING
+        description: Financed_Amount_invoice
+        sourceColumn: FINANCED_AMT
+        sourceTable: SH_INVOICE
+      Invoice_Amount:
+        type: STRING
+        description: Invoice_Amount
+        sourceColumn: INV_AMT
+        sourceTable: SH_INVOICE
+      Interest_Amount_invoice:
+        type: STRING
+        description: Interest_Amount_invoice
+        sourceColumn: INTEREST_AMT
+        sourceTable: SH_INVOICE
+      Cancel_Charge_Amount:
+        type: STRING
+        description: Cancel_Charge_Amount
+        sourceColumn: CANCEL_CHARGE_AMT
+        sourceTable: SH_INVOICE
+      Received_Amount:
+        type: STRING
+        description: Received_Amount
+        sourceColumn: RECD_AMT
+        sourceTable: SH_INVOICE
+      Oct_Amount:
+        type: STRING
+        description: Oct_Amount
+        sourceColumn: OCT_AMT
+        sourceTable: SH_INVOICE
+      Write_Off_Amount_Invoice:
+        type: STRING
+        description: Write_Off_Amount_Invoice
+        sourceColumn: WRITEOFF_AMT
+        sourceTable: SH_INVOICE
+      Cancel_Invoice_Amount:
+        type: STRING
+        description: Cancel_Invoice_Amount
+        sourceColumn: CANCEL_INV_AMT
+        sourceTable: SH_INVOICE
+      Hypo_Amount:
+        type: STRING
+        description: Hypo_Amount
+        sourceColumn: HYPO_AMT
+        sourceTable: SH_INVOICE
+      TDS_Amount_Invoice:
+        type: STRING
+        description: TDS_Amount_Invoice
+        sourceColumn: TDS_AMT
+        sourceTable: SH_INVOICE
+      Region_Code:
+        type: STRING
+        description: Region_Code
+        sourceColumn: REGION_CD
+        sourceTable: SH_ORDBOOK
+      BILL_PIN:
+        type: STRING
+        description: BILL_PIN
+        sourceColumn: BILL_PIN
+        sourceTable: SH_ORDBOOK
+      BILL_ADDRESS1:
+        type: STRING
+        description: BILL_ADDRESS1
+        sourceColumn: BILL_ADDRESS1
+        sourceTable: SH_ORDBOOK
+      BILL_ADDRESS2:
+        type: STRING
+        description: BILL_ADDRESS2
+        sourceColumn: BILL_ADDRESS2
+        sourceTable: SH_ORDBOOK
+      BILL_ADDRESS3:
+        type: STRING
+        description: BILL_ADDRESS3
+        sourceColumn: BILL_ADDRESS3
+        sourceTable: SH_ORDBOOK
+      CUSTOMER_CODE:
+        type: STRING
+        description: CUSTOMER_CODE
+        sourceColumn: CUSTOMER_CODE
+        sourceTable: SH_ORDBOOK
+      EXCHANGE_FLAG:
+        type: STRING
+        description: EXCHANGE_FLAG
+        sourceColumn: EXCHANGE_FLAG
+        sourceTable: SH_INVOICE
+      ETL_Inserted_Date:
+        type: DATETIME
+        description: ETL Audit Field to identify record insertion date
+        sourceColumn: ETL_Inserted_Date
+        sourceTable: Manual Column
+      ETL_Modified_Date:
+        type: DATETIME
+        description: ETL Audit Field to identify record modified date
+        sourceColumn: ETL_Modified_Date
+        sourceTable: Manual Column
+      ETL_Created_By:
+        type: STRING
+        description: ETL Audit Field to identify record created by user
+        sourceColumn: ETL_Created_By
+        sourceTable: Manual Column
+      ETL_Updated_By:
+        type: STRING
+        description: ETL Audit Field to identify record modified by user
+        sourceColumn: ETL_Updated_By
+        sourceTable: Manual Column
+  stateStoreType: loadDataIceberg
+  isProfilingEnabled: true
+  updateStrategy: Overwrite
+  tableName: msil_dataverse_marketing_and_sales_catalog.sales_invoice
+  warehousePath: s3://msil-dataverse-marketing-and-sales/
+  catalogName: glue
+  optional:
+    persistDataFrame: false
+    enableDataReconciliation: false
+    enforceSchema: true
+    enforceSchemaMethod: Warning
+    catalogType: glue
+  refreshInterval: 30 3 * * *
+transformation:
+  - isDynamic: true
+    alias: transformation_sales
+    description: transform_sales
+    sequence: 3
+    inputDataFrameList:
+      - inputDataFrame: SH_INVOICE_1
+        tempViewName: SH_INVOICE
+      - inputDataFrame: SH_ORDBOOK_1
+        tempViewName: SH_ORDBOOK
+    query: SELECT
+      DISTINCT     SI.INV_DATE,     SI.CANCEL_DATE,     CASE         WHEN
+      SI.CANCEL_DATE IS NULL THEN SI.INV_DATE         ELSE
+      SI.CANCEL_DATE     END AS
+      Invoice_Cancellation_Date,     SO.ORDER_DATE,     SO.ORDER_NUM,     SI.VIN,     SI.DEALER_MAP_CD
+      AS Dealer_map_code,     SI.COMP_FA AS Company_FA,     SI.LOC_CD AS
+      Location_code,     SI.PARENT_GROUP,     SI.inv_type AS
+      invoice_type,     SI.inv_num AS invoice_number,     SO.TEHSIL_CD AS
+      TEHSIL_CODE,     SO.VILLAGE_CD AS VILLAGE_CODE,     SO.STATE_CD AS
+      STATE_CODE,     SO.CS_MGA_SOLD_AMT AS CS_MGA_Sold_Amount,     SO.TDS_AMT
+      AS TDS_Amount_OrdBook,     SO.INTEREST_AMT AS
+      Interest_Amount,     SO.FIN_AMT AS Final_Amount,     SO.EMI_AMT AS
+      EMI_Amount,     SO.INSURANCE_AMT AS Insurance_Amount,     SO.NET_PREM_AMT
+      AS Net_Premium_Amount,     SO.AUTOCARD_BOOKED_AMT AS
+      Autocard_Booked_Amount,     SO.EW_BOOKED_AMT AS
+      Extended_Warranty_Booked_Amount,     SO.MI_BOOKED_AMT AS
+      MI_Booked_Amount,     SO.FINANCED_AMT AS
+      Financed_Amount,     SO.WRITEOFF_AMT AS
+      Write_Off_Amount_OrdBook,     SO.BOOKING_AMT AS
+      Booking_Amount,     SO.RECD_AMT AS
+      Received_Amount_orbook,     SO.CHARGE_AMT AS
+      Charge_Amount_ordbook,     SO.MGA_FIN_AMT AS
+      MGA_Final_Amount,     SI.VARIANT_CD AS VARIANT_CD,     SI.ECOLOR_CD AS
+      ECOLOR_CD,     SI.BOOKING_AMT AS
+      Booking_Amount_Invoice,     SI.LOYL_REDEEM_AMT AS
+      Loyalty_Redeem_Amount,     SI.CHARGE_AMT AS Charge_Amount,     SI.FCB_AMT
+      AS FCB_Amount,     SI.FINANCED_AMT AS
+      Financed_Amount_invoice,     SI.INV_AMT AS
+      Invoice_Amount,     SI.INTEREST_AMT AS
+      Interest_Amount_invoice,     SI.CANCEL_CHARGE_AMT AS
+      Cancel_Charge_Amount,     SI.RECD_AMT AS Received_Amount,     SI.OCT_AMT
+      AS Oct_Amount,     SI.WRITEOFF_AMT AS
+      Write_Off_Amount_Invoice,     SI.CANCEL_INV_AMT AS
+      Cancel_Invoice_Amount,     SI.HYPO_AMT AS Hypo_Amount,     SI.TDS_AMT AS
+      TDS_Amount_Invoice,     SO.REGION_CD AS REGION_CD,     SO.BILL_PIN AS
+      BILL_PIN,     SO.BILL_ADDRESS1 AS BILL_ADDRESS1,     SO.BILL_ADDRESS2 AS
+      BILL_ADDRESS2,     SO.BILL_ADDRESS3 AS BILL_ADDRESS3,     SI.EXCHANGE_FLAG
+      AS EXCHANGE_FLAG,   SO.CUSTOMER_CODE AS CUSTOMER_CODE,     CURRENT_DATE AS
+      ETL_Inserted_Date,     CURRENT_DATE AS
+      ETL_Modified_Date,     'Platform_admin' AS
+      ETL_Created_By,     'Platform_admin' AS ETL_Updated_By FROM     SH_INVOICE
+      SI JOIN     SH_ORDBOOK SO ON SI.ORDER_NUM =
+      SO.ORDER_NUM                   AND SI.PARENT_GROUP =
+      SO.PARENT_GROUP                   AND SI.DEALER_MAP_CD =
+      SO.DEALER_MAP_CD                   AND SI.COMP_FA =
+      SO.COMP_FA                   AND SI.LOC_CD = SO.LOC_CD
+    optional:
+      persistDataFrame: false
+      loggingOptions:
+        printSchema: true
+    type: operationThroughSqlQuery
+controlPort:
+  dataQualityRules:
+    RecordCountCheck:
+      productState:
+        expression: ">="
+        number: 1
+        referenceAlias: save_sales_invoice_Iceberg
+    NullValueCheck:
+      productState:
+        checks:
+          - column: VIN
+          - column: INV_DATE
+        referenceAlias: save_sales_invoice_Iceberg
